@@ -167,6 +167,14 @@ body {
     max-width: 800px;
 }
 
+.hero-greeting {
+    display: block;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xs);
+}
+
 .hero-subtitle {
     display: inline-block;
     font-size: var(--font-size-xs);
@@ -228,4 +236,3 @@ body {
         font-size: var(--font-size-3xl);
     }
 }
-
