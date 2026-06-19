@@ -1,3 +1,13 @@
+// Immediately apply saved theme preference to prevent flash
+(function initTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = savedTheme === "dark" || (!savedTheme && prefersDark);
+    if (isDark) {
+        document.documentElement.classList.add("dark-mode");
+    }
+})();
+
 const teamMembers = [
     {
         name: "Devansh",
@@ -64,11 +74,25 @@ function initThemeToggle() {
     const toggleButton = document.getElementById("theme-toggle");
     if (!toggleButton) return;
 
+    // Apply correctly synchronized theme classes and initial emoji indicator
+    const isDark = document.documentElement.classList.contains("dark-mode");
+    if (isDark) {
+        document.body.classList.add("dark-mode");
+        toggleButton.textContent = "☀️";
+    } else {
+        document.body.classList.remove("dark-mode");
+        toggleButton.textContent = "🌙";
+    }
+
     toggleButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-        if (document.body.classList.contains("dark-mode")) {
+        const isDarkMode = document.body.classList.toggle("dark-mode");
+        document.documentElement.classList.toggle("dark-mode", isDarkMode);
+        
+        if (isDarkMode) {
+            localStorage.setItem("theme", "dark");
             toggleButton.textContent = "☀️";
         } else {
+            localStorage.setItem("theme", "light");
             toggleButton.textContent = "🌙";
         }
     });
