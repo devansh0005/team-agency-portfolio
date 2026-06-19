@@ -63,8 +63,101 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+    
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const messageError = document.getElementById('message-error');
+    const formStatus = document.getElementById('form-status');
+
+    // Helper to clear error state
+    function clearError(input, errorElement) {
+        input.classList.remove('invalid');
+        errorElement.textContent = '';
+    }
+
+    // Helper to set error state
+    function setError(input, errorElement, message) {
+        input.classList.add('invalid');
+        errorElement.textContent = message;
+    }
+
+    // Clear status and error state on input
+    nameInput.addEventListener('input', () => {
+        clearError(nameInput, nameError);
+        if (formStatus.classList.contains('error')) {
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+        }
+    });
+    emailInput.addEventListener('input', () => {
+        clearError(emailInput, emailError);
+        if (formStatus.classList.contains('error')) {
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+        }
+    });
+    messageInput.addEventListener('input', () => {
+        clearError(messageInput, messageError);
+        if (formStatus.classList.contains('error')) {
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+        }
+    });
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Reset status
+        formStatus.textContent = '';
+        formStatus.className = 'form-status';
+
+        let isValid = true;
+
+        // Validate Name
+        const nameVal = nameInput.value.trim();
+        if (nameVal === '') {
+            setError(nameInput, nameError, 'Name is required.');
+            isValid = false;
+        } else {
+            clearError(nameInput, nameError);
+        }
+
+        // Validate Email
+        const emailVal = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailVal === '') {
+            setError(emailInput, emailError, 'Email address is required.');
+            isValid = false;
+        } else if (!emailRegex.test(emailVal)) {
+            setError(emailInput, emailError, 'Please enter a valid email address.');
+            isValid = false;
+        } else {
+            clearError(emailInput, emailError);
+        }
+
+        // Validate Message
+        const messageVal = messageInput.value.trim();
+        if (messageVal === '') {
+            setError(messageInput, messageError, 'Message is required.');
+            isValid = false;
+        } else {
+            clearError(messageInput, messageError);
+        }
+
+        if (isValid) {
+            // Display success message
+            formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            formStatus.classList.add('success');
+            
+            // Reset form fields
+            form.reset();
+        } else {
+            formStatus.textContent = 'Please correct the highlighted fields and try again.';
+            formStatus.classList.add('error');
+        }
     });
 }
 
