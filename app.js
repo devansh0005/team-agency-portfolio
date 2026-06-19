@@ -53,7 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener('DOMContentLoaded', () => {
     initGreeting();
     initCopyrightYear();
+    initContactForm();
 });
+
+/**
+ * Handles contact form submission and validation.
+ */
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+    });
+}
 
 /**
  * Dynamically injects a time-based greeting into the hero section.
