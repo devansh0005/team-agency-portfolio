@@ -54,7 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
     initGreeting();
     initCopyrightYear();
     initContactForm();
+    initThemeToggle();
 });
+
+/**
+ * Handles light/dark theme switching.
+ */
+function initThemeToggle() {
+    const toggleButton = document.getElementById("theme-toggle");
+    if (!toggleButton) return;
+
+    toggleButton.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        if (document.body.classList.contains("dark-mode")) {
+            toggleButton.textContent = "☀️";
+        } else {
+            toggleButton.textContent = "🌙";
+        }
+    });
+}
 
 /**
  * Handles contact form submission and validation.
