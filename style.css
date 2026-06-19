@@ -40,11 +40,27 @@
     --transition-speed: 0.2s;
 }
 
+body.dark-mode {
+    --color-bg: #09090b;
+    --color-surface: #18181b;
+    --color-text: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-secondary: #27272a;
+    --color-secondary-hover: #3f3f46;
+    --color-border: #27272a;
+}
+
 /* Reset */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body, #main-header, #main-footer, .team-card, .github-link, .btn, .skill-tag, .section-title, .section-description, .hero-title, .hero-description {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
@@ -97,6 +113,7 @@ body {
 #main-nav ul {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: var(--spacing-md);
 }
 
@@ -110,6 +127,26 @@ body {
 
 #main-nav a:hover {
     color: var(--color-text);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-secondary-hover);
+    color: var(--color-text);
+    transform: scale(1.1);
 }
 
 /* Buttons */
