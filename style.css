@@ -410,4 +410,104 @@ body {
     }
 }
 
+/* Contact Section Styles */
+.contact-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    background-color: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    position: relative;
+}
+
+.form-group label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    outline: none;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #ef4444;
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.error-message {
+    font-size: var(--font-size-xs);
+    color: #ef4444;
+    font-weight: 500;
+    min-height: 18px;
+    display: block;
+    margin-top: 2px;
+}
+
+.btn-submit {
+    align-self: flex-start;
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.form-status {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+}
+
+.form-status.success {
+    color: #15803d;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.form-status.error {
+    color: #b91c1c;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
 
